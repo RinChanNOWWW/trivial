@@ -12,7 +12,8 @@ namespace trivial {
  * @param connector the join connector
  */
 template <typename T>
-std::string join_vector(const std::vector<T> vec, const std::string connector) {
+std::string join_vector(const std::vector<T> &vec,
+                        const std::string &connector) {
     if (vec.size() == 0) {
         return "";
     }
@@ -21,7 +22,7 @@ std::string join_vector(const std::vector<T> vec, const std::string connector) {
     }
     return std::accumulate(
         std::next(vec.begin()), vec.end(), std::to_string(vec[0]),
-        [&connector](std::string a, T b) {
+        [connector](std::string a, T b) {
             return std::move(a) + connector + std::to_string(b);
         });
 }
@@ -31,8 +32,8 @@ std::string join_vector(const std::vector<T> vec, const std::string connector) {
  * @param vec the std::vector to be joined
  * @param connector the join connector
  */
-std::string join_vector(const std::vector<char> vec,
-                        const std::string connector) {
+std::string join_vector(const std::vector<char> &vec,
+                        const std::string &connector) {
     if (vec.size() == 0) {
         return "";
     }
@@ -51,8 +52,8 @@ std::string join_vector(const std::vector<char> vec,
  * @param vec the std::vector to be joined
  * @param connector the join connector
  */
-std::string join_vector(const std::vector<std::string> vec,
-                        const std::string connector) {
+std::string join_vector(const std::vector<std::string> &vec,
+                        const std::string &connector) {
     if (vec.size() == 0) {
         return "";
     }
