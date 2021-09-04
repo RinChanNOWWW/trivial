@@ -1,5 +1,6 @@
 #pragma once
 
+#include <memory>
 #include <numeric>
 #include <string>
 #include <vector>
@@ -10,6 +11,7 @@ namespace trivial {
  * @brief join a std::vector
  * @param vec the std::vector to be joined
  * @param connector the join connector
+ * @return the joined string
  */
 template <typename T>
 std::string join_vector(const std::vector<T> &vec,
@@ -31,6 +33,7 @@ std::string join_vector(const std::vector<T> &vec,
  * @brief join a std::vector
  * @param vec the std::vector to be joined
  * @param connector the join connector
+ * @return the joined string
  */
 std::string join_vector(const std::vector<char> &vec,
                         const std::string &connector) {
@@ -51,6 +54,7 @@ std::string join_vector(const std::vector<char> &vec,
  * @brief join a std::vector
  * @param vec the std::vector to be joined
  * @param connector the join connector
+ * @return the joined string
  */
 std::string join_vector(const std::vector<std::string> &vec,
                         const std::string &connector) {
@@ -64,6 +68,41 @@ std::string join_vector(const std::vector<std::string> &vec,
                            [connector](std::string a, std::string b) {
                                return std::move(a) + connector + b;
                            });
+}
+
+/**
+ * @brief split a string
+ * @param s the original string
+ * @param delim the delimiter
+ * @return the splited string vector
+ */
+std::vector<std::string> split(const std::string s, const std::string delim) {
+    std::vector<std::string> res;
+    size_t last = 0, next = 0;
+    while ((next = s.find(delim, last)) != std::string::npos) {
+        res.push_back(s.substr(last, next - last));
+        last = next + delim.length();
+    }
+    res.push_back(s.substr(last));
+    return res;
+}
+
+/**
+ * @brief split a string
+ * @param chars origin the char literal
+ * @param delim the delimiter
+ * @return the splited string vector
+ */
+std::vector<std::string> split(const char *chars, const std::string delim) {
+    std::string s(chars);
+    std::vector<std::string> res;
+    size_t last = 0, next = 0;
+    while ((next = s.find(delim, last)) != std::string::npos) {
+        res.push_back(s.substr(last, next - last));
+        last = next + delim.length();
+    }
+    res.push_back(s.substr(last));
+    return res;
 }
 
 }  // namespace trivial
