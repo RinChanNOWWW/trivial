@@ -1,6 +1,6 @@
 # trivial
 
-Useful cpp codes for writing some simple cpp programs. Original: https://gist.github.com/RinChanNOWWW .
+Useful cpp codes for writing some simple cpp programs.
 
 ## Contains
 
@@ -9,6 +9,9 @@ Useful cpp codes for writing some simple cpp programs. Original: https://gist.gi
     - heap sort.
 - string operation:
     - join.
+    - split.
+- advance data structure:
+    - skip list.
 
 ## Usage
 
@@ -16,7 +19,9 @@ Install the lib (In fact, the lib only contains header files now).
 
 
 ```bash
-cmake .
+mkdir build
+cd build
+cmake ..
 # move the *.h files to /usr/local/include/trivial 
 sudo make install 
 ```
@@ -30,6 +35,8 @@ using namespace trivial;
 
 // ...
 ```
+
+More detail examples can be found in `tests/`.
 
 ## Supported OS
 
