@@ -1,4 +1,5 @@
-#pragma once
+#ifndef STRINGS_H_
+#define STRINGS_H_
 
 #include <memory>
 #include <numeric>
@@ -14,8 +15,8 @@ namespace trivial {
  * @return the joined string
  */
 template <typename T>
-std::string join_vector(const std::vector<T> &vec,
-                        const std::string &connector) {
+std::string JoinVector(const std::vector<T> &vec,
+                       const std::string &connector) {
     if (vec.size() == 0) {
         return "";
     }
@@ -35,8 +36,8 @@ std::string join_vector(const std::vector<T> &vec,
  * @param connector the join connector
  * @return the joined string
  */
-std::string join_vector(const std::vector<char> &vec,
-                        const std::string &connector) {
+std::string JoinVector(const std::vector<char> &vec,
+                       const std::string &connector) {
     if (vec.size() == 0) {
         return "";
     }
@@ -56,8 +57,8 @@ std::string join_vector(const std::vector<char> &vec,
  * @param connector the join connector
  * @return the joined string
  */
-std::string join_vector(const std::vector<std::string> &vec,
-                        const std::string &connector) {
+std::string JoinVector(const std::vector<std::string> &vec,
+                       const std::string &connector) {
     if (vec.size() == 0) {
         return "";
     }
@@ -76,7 +77,7 @@ std::string join_vector(const std::vector<std::string> &vec,
  * @param delim the delimiter
  * @return the splited string vector
  */
-std::vector<std::string> split(const std::string s, const std::string delim) {
+std::vector<std::string> Split(const std::string s, const std::string delim) {
     std::vector<std::string> res;
     size_t last = 0, next = 0;
     while ((next = s.find(delim, last)) != std::string::npos) {
@@ -93,7 +94,7 @@ std::vector<std::string> split(const std::string s, const std::string delim) {
  * @param delim the delimiter
  * @return the splited string vector
  */
-std::vector<std::string> split(const char *chars, const std::string delim) {
+std::vector<std::string> Split(const char *chars, const std::string delim) {
     std::string s(chars);
     std::vector<std::string> res;
     size_t last = 0, next = 0;
@@ -106,3 +107,5 @@ std::vector<std::string> split(const char *chars, const std::string delim) {
 }
 
 }  // namespace trivial
+
+#endif
