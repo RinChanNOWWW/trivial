@@ -90,7 +90,7 @@ std::vector<std::string> Split(const std::string s, const std::string delim) {
 
 /**
  * @brief split a string
- * @param chars origin the char literal
+ * @param chars the origin char literal
  * @param delim the delimiter
  * @return the splited string vector
  */
@@ -104,6 +104,40 @@ std::vector<std::string> Split(const char *chars, const std::string delim) {
     }
     res.push_back(s.substr(last));
     return res;
+}
+
+/**
+ * @brief trim from begin of a string
+ * @param str the origin string
+ * @param ws the chars to trim
+ * @return the trimmed string
+ */
+template <typename Chars>
+inline std::string &LTrim(std::string &s, Chars ws) {
+    s.erase(0, s.find_first_not_of(ws));
+    return s;
+}
+
+/**
+ * @brief trim from end of a string
+ * @param str the origin string
+ * @param ws the chars to trim
+ */
+template <typename Chars>
+inline std::string &RTrim(std::string &s, Chars ws) {
+    s.erase(s.find_last_not_of(ws) + 1);
+    return s;
+}
+
+/**
+ * @brief trim a string from both sides
+ * @param str the origin string
+ * @param ws the chars to trim
+ */
+template <typename Chars>
+inline std::string &Trim(std::string &s, Chars ws) {
+    LTrim(RTrim(s, ws), ws);
+    return s;
 }
 
 }  // namespace trivial

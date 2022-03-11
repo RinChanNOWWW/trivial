@@ -45,4 +45,148 @@ TEST(StringsTest, Split) {
     }
 }
 
+TEST(StringsTest, LTrim) {
+    // trim with string
+    {
+        struct TestCase {
+            std::string to_trim;
+            std::string ws;
+            std::string trimed;
+        };
+        std::vector<TestCase> test_cases = {{"   aaaaa    ", " ", "aaaaa    "},
+                                            {"aaabbbaaa", "a", "bbbaaa"},
+                                            {"aaabbbaaa", "aa", "bbbaaa"},
+                                            {"aaabbbaaa", "A", "aaabbbaaa"}};
+
+        for (auto &t : test_cases) {
+            ASSERT_EQ(t.trimed, LTrim(t.to_trim, t.ws));
+        }
+    }
+    // trim with chars
+    {
+        struct TestCase {
+            std::string to_trim;
+            const char *ws;
+            std::string trimed;
+        };
+        std::vector<TestCase> test_cases = {{"   aaaaa    ", " ", "aaaaa    "},
+                                            {"aaabbbaaa", "a", "bbbaaa"},
+                                            {"aaabbbaaa", "aa", "bbbaaa"},
+                                            {"aaabbbaaa", "A", "aaabbbaaa"}};
+        for (auto &t : test_cases) {
+            ASSERT_EQ(t.trimed, LTrim(t.to_trim, t.ws));
+        }
+    }
+    // trim with char
+    {
+        struct TestCase {
+            std::string to_trim;
+            char ws;
+            std::string trimed;
+        };
+        std::vector<TestCase> test_cases = {{"   aaaaa    ", ' ', "aaaaa    "},
+                                            {"aaabbbaaa", 'a', "bbbaaa"},
+                                            {"aaabbbaaa", 'A', "aaabbbaaa"}};
+        for (auto &t : test_cases) {
+            ASSERT_EQ(t.trimed, LTrim(t.to_trim, t.ws));
+        }
+    }
+}
+
+TEST(StringsTest, RTrim) {
+    // trim with string
+    {
+        struct TestCase {
+            std::string to_trim;
+            std::string ws;
+            std::string trimed;
+        };
+        std::vector<TestCase> test_cases = {{"   aaaaa    ", " ", "   aaaaa"},
+                                            {"aaabbbaaa", "a", "aaabbb"},
+                                            {"aaabbbaaa", "aa", "aaabbb"},
+                                            {"aaabbbaaa", "A", "aaabbbaaa"}};
+
+        for (auto &t : test_cases) {
+            ASSERT_EQ(t.trimed, RTrim(t.to_trim, t.ws));
+        }
+    }
+    // trim with chars
+    {
+        struct TestCase {
+            std::string to_trim;
+            const char *ws;
+            std::string trimed;
+        };
+        std::vector<TestCase> test_cases = {{"   aaaaa    ", " ", "   aaaaa"},
+                                            {"aaabbbaaa", "a", "aaabbb"},
+                                            {"aaabbbaaa", "aa", "aaabbb"},
+                                            {"aaabbbaaa", "A", "aaabbbaaa"}};
+        for (auto &t : test_cases) {
+            ASSERT_EQ(t.trimed, RTrim(t.to_trim, t.ws));
+        }
+    }
+    // trim with char
+    {
+        struct TestCase {
+            std::string to_trim;
+            char ws;
+            std::string trimed;
+        };
+        std::vector<TestCase> test_cases = {{"   aaaaa    ", ' ', "   aaaaa"},
+                                            {"aaabbbaaa", 'a', "aaabbb"},
+                                            {"aaabbbaaa", 'A', "aaabbbaaa"}};
+        for (auto &t : test_cases) {
+            ASSERT_EQ(t.trimed, RTrim(t.to_trim, t.ws));
+        }
+    }
+}
+
+TEST(StringsTest, Trim) {
+    // trim with string
+    {
+        struct TestCase {
+            std::string to_trim;
+            std::string ws;
+            std::string trimed;
+        };
+        std::vector<TestCase> test_cases = {{"   aaaaa    ", " ", "aaaaa"},
+                                            {"aaabbbaaa", "a", "bbb"},
+                                            {"aaabbbaaa", "aa", "bbb"},
+                                            {"aaabbbaaa", "A", "aaabbbaaa"}};
+
+        for (auto &t : test_cases) {
+            ASSERT_EQ(t.trimed, Trim(t.to_trim, t.ws));
+        }
+    }
+    // trim with chars
+    {
+        struct TestCase {
+            std::string to_trim;
+            const char *ws;
+            std::string trimed;
+        };
+        std::vector<TestCase> test_cases = {{"   aaaaa    ", " ", "aaaaa"},
+                                            {"aaabbbaaa", "a", "bbb"},
+                                            {"aaabbbaaa", "aa", "bbb"},
+                                            {"aaabbbaaa", "A", "aaabbbaaa"}};
+        for (auto &t : test_cases) {
+            ASSERT_EQ(t.trimed, Trim(t.to_trim, t.ws));
+        }
+    }
+    // trim with char
+    {
+        struct TestCase {
+            std::string to_trim;
+            char ws;
+            std::string trimed;
+        };
+        std::vector<TestCase> test_cases = {{"   aaaaa    ", ' ', "aaaaa"},
+                                            {"aaabbbaaa", 'a', "bbb"},
+                                            {"aaabbbaaa", 'A', "aaabbbaaa"}};
+        for (auto &t : test_cases) {
+            ASSERT_EQ(t.trimed, Trim(t.to_trim, t.ws));
+        }
+    }
+}
+
 }  // namespace trivial

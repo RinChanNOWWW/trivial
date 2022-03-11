@@ -10,6 +10,7 @@ Useful cpp codes for writing some simple cpp programs.
 - string operation:
     - join.
     - split.
+    - trim(ltrim/rtrim/trim).
 - advance data structure:
     - skip list.
 
