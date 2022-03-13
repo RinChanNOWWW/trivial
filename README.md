@@ -11,6 +11,7 @@ Useful cpp codes for writing some simple cpp programs.
     - join.
     - split.
     - trim(ltrim/rtrim/trim).
+    - get a vector or a 2-dims vector from a string.
 - advance data structure:
     - skip list.
 
