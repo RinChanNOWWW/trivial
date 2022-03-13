@@ -11,20 +11,23 @@ Useful cpp codes for writing some simple cpp programs.
     - join.
     - split.
     - trim(ltrim/rtrim/trim).
+- utilites:
     - get a vector or a 2-dims vector from a string.
+    - print a vector.
 - advance data structure:
     - skip list.
 
 ## Usage
 
-Install the lib (In fact, the lib only contains header files now).
+Install the lib.
 
 
 ```bash
 mkdir build
 cd build
 cmake ..
-# move the *.h files to /usr/local/include/trivial 
+# install the header files under /usr/local/include (trivial)
+# install the library under /usr/local/lib (libtrivial.a)
 sudo make install 
 ```
 Write the codes..
@@ -38,8 +41,14 @@ using namespace trivial;
 // ...
 ```
 
+Compile the codes:
+
+```bash
+g++ main.cpp -o main -ltrivial
+```
+
 More detail examples can be found in `tests/`.
 
-## Supported OS
+## Attention
 
-The lib is **only tested on my own Ubuntu 20.04(on WSL)**.
+The lib is **only tested on my own Ubuntu 20.04(WSL) with g++ 9.3.0 in C++17**.

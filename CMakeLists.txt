@@ -4,7 +4,24 @@ project(trivial VERSION 1.0.0 DESCRIPTION "contains some useful cpp codes")
 
 set(CMAKE_CXX_STANDARD 17)
 
-include_directories(include)
+include_directories(include src)
+
+include(GNUInstallDirs)
+
+# build library
+add_library(trivial "")
+target_sources(trivial
+  PRIVATE
+  "src/macro.h"
+  "src/strings.cpp"
+  "src/utility.cpp"
+)
+
+target_include_directories(trivial
+  PUBLIC
+    $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>
+    $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
+)
 
 # enable unit test
 enable_testing()
@@ -18,8 +35,9 @@ target_sources(trivial_tests
   "tests/algorithm_test.cpp"
   "tests/strings_test.cpp"
   "tests/skiplist_test.cpp"
+  "tests/utility_test.cpp"
 )
-target_link_libraries(trivial_tests gtest gtest_main)
+target_link_libraries(trivial_tests trivial gtest gtest_main)
 add_test(NAME "trivial_tests" COMMAND "trivial_tests")
 
 # install header files
@@ -27,6 +45,12 @@ install(
   FILES 
   "include/trivial/algorithm.h" 
   "include/trivial/strings.h"
+  "include/trivial/utility.h"
   DESTINATION 
-  "/usr/local/include/trivial"
+  "${CMAKE_INSTALL_INCLUDEDIR}/trivial"
+)
+install(TARGETS trivial
+    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
 )
