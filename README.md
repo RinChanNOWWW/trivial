@@ -14,8 +14,11 @@ Useful cpp codes for writing some simple cpp programs.
 - utilites:
     - get a vector or a 2-dims vector from a string.
     - print a vector.
-- advance data structure:
+- advanced data structure:
     - skip list.
+    - lru for string elements.
+    - lfu for string elements.
+    
 
 ## Usage
 
