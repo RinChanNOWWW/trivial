@@ -15,6 +15,7 @@ target_sources(trivial
   "src/macro.h"
   "src/strings.cpp"
   "src/utility.cpp"
+  "src/lru.cpp"
 )
 
 target_include_directories(trivial
@@ -36,6 +37,7 @@ target_sources(trivial_tests
   "tests/strings_test.cpp"
   "tests/skiplist_test.cpp"
   "tests/utility_test.cpp"
+  "tests/lru_test.cpp"
 )
 target_link_libraries(trivial_tests trivial gtest gtest_main)
 add_test(NAME "trivial_tests" COMMAND "trivial_tests")
@@ -46,6 +48,8 @@ install(
   "include/trivial/algorithm.h" 
   "include/trivial/strings.h"
   "include/trivial/utility.h"
+  "include/trivial/kv.h"
+  "include/trivial/lru.h"
   DESTINATION 
   "${CMAKE_INSTALL_INCLUDEDIR}/trivial"
 )
