@@ -17,6 +17,7 @@ target_sources(trivial
   "src/utility.cpp"
   "src/lru.cpp"
   "src/lfu.cpp"
+  "src/trie.cpp"
 )
 
 target_include_directories(trivial
@@ -40,6 +41,7 @@ target_sources(trivial_tests
   "tests/utility_test.cpp"
   "tests/lru_test.cpp"
   "tests/lfu_test.cpp"
+  "tests/trie_test.cpp"
 )
 target_link_libraries(trivial_tests trivial gtest gtest_main)
 add_test(NAME "trivial_tests" COMMAND "trivial_tests")
@@ -53,6 +55,7 @@ install(
   "include/trivial/kv.h"
   "include/trivial/lru.h"
   "include/trivial/lfu.h"
+  "include/trivial/trie.h"
   DESTINATION 
   "${CMAKE_INSTALL_INCLUDEDIR}/trivial"
 )

@@ -18,6 +18,7 @@ Useful cpp codes for writing some simple cpp programs.
     - skip list.
     - lru for string elements.
     - lfu for string elements.
+    - trie for string elements.
     
 
 ## Usage
