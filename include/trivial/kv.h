@@ -13,13 +13,9 @@ class KVStore {
     typedef std::string Value;
 
    public:
-    KVStore(int cap) : cap_(cap) {}
     virtual KVStatus Get(const Key &key, Value *val) = 0;
     virtual void Set(const Key &key, const Value &val) = 0;
     virtual ~KVStore() = default;
-
-   protected:
-    int cap_;
 };
 
 }  // namespace trivial

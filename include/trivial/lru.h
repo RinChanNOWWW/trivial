@@ -9,7 +9,7 @@
 namespace trivial {
 class LRU : KVStore {
    public:
-    LRU(int cap) : KVStore(cap) {}
+    LRU(int cap) : cap_(cap) {}
 
     KVStatus Get(const Key &key, Value *val) override;
 
@@ -24,6 +24,7 @@ class LRU : KVStore {
    private:
     dlist list_;
     std::unordered_map<Key, dlist::iterator> map_;
+    int cap_;
 };
 
 }  // namespace trivial
