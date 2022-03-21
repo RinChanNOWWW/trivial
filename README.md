@@ -16,9 +16,10 @@ Useful cpp codes for writing some simple cpp programs.
     - print a vector.
 - advanced data structure:
     - skip list.
-    - lru for string elements.
-    - lfu for string elements.
-    - trie for string elements.
+    - key-value collections (for string only):
+        - lru.
+        - lfu.
+        - trie (iterator implemented).
     
 
 ## Usage
@@ -29,6 +30,9 @@ Install the lib.
 ```bash
 mkdir build
 cd build
+# build in Release mode
+cmake -DCMAKE_BUILD_TYPE=Release ..
+# build in Debug mode
 cmake ..
 # install the header files under /usr/local/include (trivial)
 # install the library under /usr/local/lib (libtrivial.a)

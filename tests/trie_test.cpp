@@ -23,4 +23,101 @@ TEST(TrieTest, SimpleTest) {
     delete trie;
 }
 
+TEST(TrieTest, IterTest) {
+    Trie *trie = new Trie();
+
+    trie->Set("abc", "");
+    trie->Set("abcd", "");
+    trie->Set("abe", "");
+    trie->Set("ac", "");
+    trie->Set("b", "");
+
+    // seek from beigin
+    TrieIterator iter(trie);
+    iter.SeekToFirst();
+    EXPECT_TRUE(iter.IsValid());
+    EXPECT_EQ("abc", iter.GetKey());
+    iter.Next();
+    EXPECT_TRUE(iter.IsValid());
+    EXPECT_EQ("abcd", iter.GetKey());
+    iter.Next();
+    EXPECT_TRUE(iter.IsValid());
+    EXPECT_EQ("abe", iter.GetKey());
+    iter.Next();
+    EXPECT_TRUE(iter.IsValid());
+    EXPECT_EQ("ac", iter.GetKey());
+    iter.Next();
+    EXPECT_TRUE(iter.IsValid());
+    EXPECT_EQ("b", iter.GetKey());
+    iter.Next();
+    EXPECT_FALSE(iter.IsValid());
+
+    // seek from an exist key
+    iter.Seek("abe");
+    EXPECT_TRUE(iter.IsValid());
+    EXPECT_EQ("abe", iter.GetKey());
+    iter.Next();
+    EXPECT_TRUE(iter.IsValid());
+    EXPECT_EQ("ac", iter.GetKey());
+    iter.Next();
+    EXPECT_TRUE(iter.IsValid());
+    EXPECT_EQ("b", iter.GetKey());
+    iter.Next();
+    EXPECT_FALSE(iter.IsValid());
+
+    // seek from a non-exist key which is in the trie
+    iter.Seek("ab");
+    EXPECT_TRUE(iter.IsValid());
+    EXPECT_EQ("abc", iter.GetKey());
+    iter.Next();
+    EXPECT_TRUE(iter.IsValid());
+    EXPECT_EQ("abcd", iter.GetKey());
+    iter.Next();
+    EXPECT_TRUE(iter.IsValid());
+    EXPECT_EQ("abe", iter.GetKey());
+    iter.Next();
+    EXPECT_TRUE(iter.IsValid());
+    EXPECT_EQ("ac", iter.GetKey());
+    iter.Next();
+    EXPECT_TRUE(iter.IsValid());
+    EXPECT_EQ("b", iter.GetKey());
+    iter.Next();
+    EXPECT_FALSE(iter.IsValid());
+
+    // seek from a non-exist key which is not in the trie
+    iter.Seek("abdf");
+    EXPECT_TRUE(iter.IsValid());
+    EXPECT_EQ("abe", iter.GetKey());
+    iter.Next();
+    EXPECT_TRUE(iter.IsValid());
+    EXPECT_EQ("ac", iter.GetKey());
+    iter.Next();
+    EXPECT_TRUE(iter.IsValid());
+    EXPECT_EQ("b", iter.GetKey());
+    iter.Next();
+    EXPECT_FALSE(iter.IsValid());
+
+    // seek from a non-exist key which is greater than the last key
+    iter.Seek("ba");
+    EXPECT_FALSE(iter.IsValid());
+
+    // seek randomly
+    iter.Seek("abe");
+    EXPECT_TRUE(iter.IsValid());
+    EXPECT_EQ("abe", iter.GetKey());
+    iter.Seek("abc");
+    EXPECT_TRUE(iter.IsValid());
+    EXPECT_EQ("abc", iter.GetKey());
+    iter.Seek("ac");
+    EXPECT_TRUE(iter.IsValid());
+    EXPECT_EQ("ac", iter.GetKey());
+    iter.Seek("b");
+    EXPECT_TRUE(iter.IsValid());
+    EXPECT_EQ("b", iter.GetKey());
+    iter.Next();
+    EXPECT_FALSE(iter.IsValid());
+
+    delete trie;
+}
+
 }  // namespace trivial
