@@ -20,6 +20,7 @@ Useful cpp codes for writing some simple cpp programs.
         - lru.
         - lfu.
         - trie (iterator implemented).
+    - fenwick tree (binary index tree).
     
 
 ## Usage
